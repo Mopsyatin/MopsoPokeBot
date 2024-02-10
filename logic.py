@@ -195,7 +195,7 @@ class Pokemon:
     def attack(self, enemy):
         current_time = datetime.now()  
         delta_time = timedelta(seconds = self.interval) 
-        if (current_time - self.last_feed_time) > delta_time: 
+        if (current_time - self.last_attack_time) > delta_time: 
             self.last_attack_time = current_time
             if isinstance(enemy, Wizard): # Проверка на то, что enemy является типом данных Wizard (является экземпляром класса Волшебник)
                 chance = randint(1,5)   
@@ -235,7 +235,7 @@ class Pokemon:
                 Победа @{self.pokemon_trainer} над @{enemy.pokemon_trainer}!
                 Вы получили:  {berry}'''
         else:
-            return f"Йоу, потише твоему покемону нужен отдых: {current_time + delta_time}"
+            return f"Йоу, потише твоему покемону нужен отдых"
 
 class Fighter(Pokemon):
     def attack(self, enemy):
