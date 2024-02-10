@@ -8,18 +8,17 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(commands=['go'])
 def go(message):
-    if message.from_user.username not in Pokemon.pokemons.keys():
-        chance = randint(1,8)
-        if chance == 1:
-            pokemon = Wizard(message.from_user.username)
-        elif chance == 2:
-            pokemon = Fighter(message.from_user.username)
-        else:
-            pokemon = Pokemon(message.from_user.username)
-        bot.send_message(message.chat.id, pokemon.info())
-        bot.send_photo(message.chat.id, pokemon.show_img())
+    chance = randint(1,8)
+    if chance == 1:
+        pokemon = Wizard(message.from_user.username)
+    elif chance == 2:
+        pokemon = Fighter(message.from_user.username)
     else:
-        bot.reply_to(message, "Ты уже создал себе покемона")
+        pokemon = Pokemon(message.from_user.username)
+    bot.send_message(message.chat.id, pokemon.info())
+    bot.send_photo(message.chat.id, pokemon.show_img())
+    bot.send_message(message.chat.id, "ОСТОРОЖНО СЛЕДУЩЕЕ ИСПОЛЬЗОВАНИЕ ЭТОЙ КОМАНДЫ ПЕРЕСОЗДАСТ ВАШЕГО ПОКЕМОНА !!!БЕЗВОЗВРАТНО!!!")
+    
 
 @bot.message_handler(commands=['attack'])
 def attack_pok(message):
