@@ -177,7 +177,7 @@ class Pokemon:
     def heal(self, feed_interval = 30):
         current_time = datetime.now()  
         delta_time = timedelta(minutes = feed_interval)  
-        if (current_time - self.last_feed_time) > delta_time:
+        if (current_time - self.last_heal_time) > delta_time:
             self.hp = self.max_hp 
             self.last_heal_time = current_time
             return f"Твой покемон отхилен. Текущее здоровье: {self.hp}"
